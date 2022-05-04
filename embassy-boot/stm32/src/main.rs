@@ -7,11 +7,12 @@ use cortex_m_rt::{entry, exception};
 use defmt_rtt as _;
 
 use embassy_boot_stm32::*;
-use embassy_stm32::flash::{Flash, ERASE_SIZE};
+// use embassy_stm32::flash::{Flash, ERASE_SIZE};
+use embassy_stm32 as _;
 
 #[entry]
 fn main() -> ! {
-    let p = embassy_stm32::init(Default::default());
+    //let p = embassy_stm32::init(Default::default());
 
     // Uncomment this if you are debugging the bootloader with debugger/RTT attached,
     // as it prevents a hard fault when accessing flash 'too early' after boot.
@@ -21,10 +22,10 @@ fn main() -> ! {
         }
     */
 
-    let mut bl: BootLoader<ERASE_SIZE> = BootLoader::default();
-    let mut flash = Flash::unlock(p.FLASH);
-    let start = bl.prepare(&mut SingleFlashProvider::new(&mut flash));
-    core::mem::drop(flash);
+    let mut bl: BootLoader<131072> = BootLoader::default();
+//    let mut flash = Flash::unlock(p.FLASH);
+    let start = 0x08040000; //bl.prepare(&mut SingleFlashProvider::new(&mut flash));
+    //core::mem::drop(flash);
     unsafe { bl.load(start) }
 }
 
