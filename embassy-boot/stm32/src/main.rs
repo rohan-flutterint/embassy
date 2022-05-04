@@ -8,11 +8,11 @@ use defmt_rtt as _;
 
 use embassy_boot_stm32::*;
 // use embassy_stm32::flash::{Flash, ERASE_SIZE};
-use embassy_stm32 as _;
+//use embassy_stm32 as _;
 
 #[entry]
 fn main() -> ! {
-    //let p = embassy_stm32::init(Default::default());
+    let p = embassy_stm32::init(Default::default());
 
     // Uncomment this if you are debugging the bootloader with debugger/RTT attached,
     // as it prevents a hard fault when accessing flash 'too early' after boot.
