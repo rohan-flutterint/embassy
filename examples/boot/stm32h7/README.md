@@ -25,5 +25,5 @@ cargo objcopy --release --bin b -- -O binary b.bin
 # Flash `a` (which includes b.bin)
 
 ```
-cargo flash --release --bin a --chip STM32WLE5JCIx
+cargo flash --release --bin a --chip STM32H743ZITx
 ```
